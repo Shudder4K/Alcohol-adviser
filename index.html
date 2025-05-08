@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cocktail Advisor Chat</title>
+    <style>
+        body { font-family: Arial; max-width:700px; margin:50px auto; padding:20px; background:#f4f4f4; border-radius:10px; }
+        #chat { background:white; padding:10px; height:300px; overflow-y:scroll; border:1px solid #ccc; margin-bottom:10px; }
+        .user { text-align:right; font-weight:bold; }
+        .bot  { text-align:left; color:#333; }
+        input { width:80%; padding:8px; }
+        button{ padding:8px; background:#5cb85c; color:white; border:none; border-radius:5px; cursor:pointer; }
+    </style>
+</head>
+<body>
+<h1>Cocktail Advisor</h1>
+<div id="chat"></div>
+<input id="msg" type="text" placeholder="Ask about cocktails..." autocomplete="off" />
+<button onclick="send()">Send</button>
+<script>
+async function send(){
+  const input=document.getElementById('msg');
+  const chat=document.getElementById('chat');
+  const txt=input.value.trim(); if(!txt) return;
+  chat.innerHTML+=`<div class="user">You: ${txt}</div>`;
+  input.value=''; chat.scrollTop=chat.scrollHeight;
+  const res=await fetch('/chat',{
+    method:'POST', headers:{'Content-Type':'application/x-www-form-urlencoded'},
+    body:`message=${encodeURIComponent(txt)}&user_id=user1`
+  });
+  const d=await res.json(); let r=d.response;
+  if(Array.isArray(r)) r=r.join('<br>');
+  chat.innerHTML+=`<div class="bot">Bot: ${r}</div>`;
+  chat.scrollTop=chat.scrollHeight;
+}
+</script>
+</body>
+</html>
