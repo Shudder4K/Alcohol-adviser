@@ -1,4 +1,4 @@
-`markdown
+
 # Cocktail Advisor Chat
 
 A simple FastAPI-based chat application that lets you:
