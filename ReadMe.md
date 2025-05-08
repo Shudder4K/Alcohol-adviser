@@ -40,19 +40,33 @@ A simple FastAPI-based chat application that lets you:
 
 
 cocktail\_advisor/
+
 ├── api/
+
 │   ├── main.py           # FastAPI endpoints & request handlers
+
 │   └── rag\_pipeline.py   # RAG logic, FAISS index, ingredient-overlap & embeddings
+
 ├── utils/
+
 │   └── memory.py         # In-memory favourites store
+
 ├── chat\_ui/
+
 │   └── index.html        # Minimal chat frontend (HTML+JS)
+
 ├── data/
+
 │   └── final\_cocktails.csv
+
 ├── vectorstore/
+
 │   └── faiss\_index.faiss # FAISS index (auto-generated)
+
 │   └── faiss\_index.npy   # Corresponding embeddings
+
 ├── requirements.txt
+
 └── README.md
 
 `
